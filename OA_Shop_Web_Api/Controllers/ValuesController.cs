@@ -11,24 +11,28 @@ namespace OA_Shop_Web_Api.Controllers
 {
     public class ValuesController : ApiController
     {
-        public LstProServices lstProServices 
-        { get 
+        public LstProServices lstProServices
+        {
+            get
             {
                 return new LstProServices();
-            } 
+            }
         }
         // GET api/values
         [HttpGet]
-        public List<LstPro> Ge()
+        public List<LstPro> Type(int id = 0)
         {
-            var data = lstProServices.GetPage(3,1,x=>true,x=>x.ID,true).ToList();
-            return data;
-        }
+            if (id == 0)
+            {
+                var data = lstProServices.GetPage(3, 1, x => true, x => x.ID, true).ToList();
+                return data;
+            }
+            else
+            {
+                var data = lstProServices.GetPage(3, 1, x => x.SecondID == id, x => x.ID, true).ToList();
+                return data;
+            }
 
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
         }
 
         // POST api/values

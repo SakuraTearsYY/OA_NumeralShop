@@ -11,21 +11,17 @@ namespace OA_NumeralsHOP.Controllers
     [MyFilter]
     public class MainController : Controller
     {
-        private LstMenuServices userInfoService { get { return new LstMenuServices(); } }
+        public SecondTypeService secondTypeService { get { return new SecondTypeService(); } }
         // GET: Main
         public ActionResult Index()
         {
             return View();
         }
-
-        public JsonResult Menu() 
+        [HttpPost]
+        public JsonResult DeopDowm()
         {
-            if (Session["Info"] != null)
-            {
-                var data = userInfoService.Select(x => true);
-                return Json(data);
-            }
-            return Json(0);
+            var data = secondTypeService.Select(x => x.FirstID ==1);
+            return Json(data);
         }
     }
 }
