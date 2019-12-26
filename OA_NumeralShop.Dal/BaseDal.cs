@@ -21,7 +21,12 @@ namespace OA_NumeralShop.Dal
             return db.Set<T>().Find(id);
         }
 
-        public IQueryable<T> GetPage<S>(int Size, int PageIndex, Expression<Func<T, bool>> WhereLambda, Expression<Func<T, S>> OrderByLambda, bool IsDesc)
+        public int Total() 
+        {
+            return db.Set<T>().Count();
+        }
+
+        public virtual IQueryable<T> GetPage<S>(int Size, int PageIndex, Expression<Func<T, bool>> WhereLambda, Expression<Func<T, S>> OrderByLambda, bool IsDesc)
         {
             if (IsDesc)
             {

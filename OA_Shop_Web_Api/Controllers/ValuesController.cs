@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OA_NumeralShop.Bll;
+using OA_NumeralShop.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,10 +11,18 @@ namespace OA_Shop_Web_Api.Controllers
 {
     public class ValuesController : ApiController
     {
+        public LstProServices lstProServices 
+        { get 
+            {
+                return new LstProServices();
+            } 
+        }
         // GET api/values
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public List<LstPro> Ge()
         {
-            return new string[] { "value1", "value2" };
+            var data = lstProServices.GetPage(3,1,x=>true,x=>x.ID,true).ToList();
+            return data;
         }
 
         // GET api/values/5
@@ -30,7 +40,7 @@ namespace OA_Shop_Web_Api.Controllers
         public void Put(int id, [FromBody]string value)
         {
         }
-
+        [HttpDelete]
         // DELETE api/values/5
         public void Delete(int id)
         {

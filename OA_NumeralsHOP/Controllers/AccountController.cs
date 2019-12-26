@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OA_NumeralShop.Bll;
+using OA_NumeralShop.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +10,10 @@ namespace OA_NumeralsHOP.Controllers
 {
     public class AccountController : Controller
     {
+        public LstProServices lstProServices = new LstProServices();
+        
         // GET: Account
-        public ActionResult Index()
+        public ActionResult Sigin()
         {
             return View();
         }
