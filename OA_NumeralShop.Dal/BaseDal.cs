@@ -11,17 +11,17 @@ namespace OA_NumeralShop.Dal
     public class BaseDal<T> where T : class, new()
     {
         public DbContext db { get { return GetData.Get(); } }
-        public IQueryable<T> Select(Expression<Func<T, bool>> WhereLambda)
+        public virtual IQueryable<T> Select(Expression<Func<T, bool>> WhereLambda)
         {
             return db.Set<T>().Where(WhereLambda).AsQueryable();
         }
 
-        public T Query(int id)
+        public virtual T Query(int id)
         {
             return db.Set<T>().Find(id);
         }
 
-        public int Total() 
+        public virtual int Total() 
         {
             return db.Set<T>().Count();
         }
@@ -48,19 +48,19 @@ namespace OA_NumeralShop.Dal
             }
         }
 
-        public bool Add(T model)
+        public virtual bool Add(T model)
         {
             db.Set<T>().Add(model);
             return db.SaveChanges() > 0;
         }
 
-        public bool Upd(T model)
+        public virtual bool Upd(T model)
         {
             db.Entry(model).State = EntityState.Modified;
             return db.SaveChanges() > 0;
         }
 
-        public bool Del(T model)
+        public virtual bool Del(T model)
         {
             db.Entry(model).State = EntityState.Deleted;
             return db.SaveChanges() > 0;

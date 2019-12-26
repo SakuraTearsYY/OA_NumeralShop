@@ -55,6 +55,7 @@
     <Compile Include="BaseDal.cs" />
     <Compile Include="FirstTypeDal.cs" />
     <Compile Include="GetData.cs" />
+    <Compile Include="LstMenuDal.cs" />
     <Compile Include="LstProDal.cs" />
     <Compile Include="ProductDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

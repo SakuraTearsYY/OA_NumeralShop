@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script>
+        $(function () {
+            jQuery.ajax({
+                url: "/Main/Menu",
+                //data: { Account: $("#name").val(), password: $("#pwd").val() },
+                dataType: "json",
+                type: "post",
+                success: function (res) {
+                    if (res != null) {
+                        console.log(res)
+                        var f = [];
+                        var fNamre = []
+                        var s = []
+                        secondNam = []
+                        for (var i = 0; i < res.length; i++) {
+                            f.push(res[i].FirstID);
+                            fNamre.push(res[i].FirstName);
+                            if (res[i].SecondID != null) {
+                                s.push(res[i].SecondID)
+                            }
+                            if (res[i].SecondName != null) {
+                                secondNam.push(res[i].SecondName)
+                            }
+
+                        }
+                        f = $.unique(f.sort());
+                        fNamre = $.unique(fNamre.sort());
+                        secondNam = $.unique(secondNam.sort());
+                        s = $.unique(s.sort());
+                        console.log(f)
+                        console.log(fNamre)
+                        for (var i = 1; i <= f.length; i++) {
+                            console.log("1" + fNamre[i - 1])
+                            for (var j = 0; j < s.length; j++) {
+
+                            }
+                            //first(res, i)
+                        }
+                        console.log(secondNam)
+                        console.log(s)
+                    }
+                }
+            });
+            function third(content, ind) {
+                for (var i = 0; i < content.length; i++) {
+
+                }
+            }
+
+            function first(content, ind) {
+                for (var i = 0; i < content.length; i++) {
+                    if (content[i].SecondName != null) {
+                        if (content[i].FirstID == ind) {
+                            console.log("2" + content[i].SecondName, "3" + content[i].ThirdName)
+                        }
+                    }
+
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

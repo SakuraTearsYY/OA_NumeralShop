@@ -4,19 +4,38 @@
 }
 
 <h2>Index</h2>
-
+<input id="name" class="form-control" type="text" />
+<input id="pwd" class="form-control" type="password" />
+<button id="btn" class="form-control">click</button>
 
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script>
     $(function () {
-        var ApiUrl = "https://localhost:44318/";
-        $.ajax({
-            url: ApiUrl + "api/values/Ge",
-            dataType: "json",
-            type: "get",
-            success: function (res) {
-                console.log(res)
-            }
+        //var ApiUrl = "https://localhost:44318/";
+        //$.ajax({
+        //    url: ApiUrl + "api/values/Ge",
+        //    dataType: "json",
+        //    type: "get",
+        //    success: function (res) {
+        //        console.log(res)
+        //    }
+        //});
+        $("#btn").click(function () {
+            jQuery.ajax({
+                url: "/Account/Login",
+                data: { Account: $("#name").val(), password: $("#pwd").val() },
+                dataType: "json",
+                type: "post",
+                success: function (res) {
+                    if (res != null) {
+                        if (res === "F") {
+                            alert(true)
+                        } else if (res === "T") {
+                            location.href="/Main/Index"
+                        }
+                    }
+                }
+            });
         });
     });
 </script>
