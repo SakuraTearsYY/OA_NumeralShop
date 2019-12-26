@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+    $(function () {
+        var ApiUrl = "https://localhost:44318/";
+        $.ajax({
+            url: ApiUrl + "api/values",
+            dataType: "json",
+            type: "get",
+            success: function (res) {
+                console.log(res)
+            }
+        });
+    });
+</script>
